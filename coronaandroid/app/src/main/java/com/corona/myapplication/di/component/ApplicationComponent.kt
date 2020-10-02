@@ -12,5 +12,4 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(app: MyApplication)
-
 }
