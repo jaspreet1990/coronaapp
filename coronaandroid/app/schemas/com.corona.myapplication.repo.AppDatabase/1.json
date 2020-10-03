@@ -2,28 +2,34 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5af46e42ae757d2b2310db4bf6090367",
+    "identityHash": "4b88666baffa0e8fc403608431102824",
     "entities": [
       {
         "tableName": "Corona_Country_Wise",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `country_name` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`country_name` TEXT NOT NULL, `date` TEXT, `province` TEXT NOT NULL, PRIMARY KEY(`country_name`))",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "countryName",
             "columnName": "country_name",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "province",
+            "columnName": "province",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "country_name"
           ],
           "autoGenerate": false
         },
@@ -34,7 +40,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5af46e42ae757d2b2310db4bf6090367')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4b88666baffa0e8fc403608431102824')"
     ]
   }
 }

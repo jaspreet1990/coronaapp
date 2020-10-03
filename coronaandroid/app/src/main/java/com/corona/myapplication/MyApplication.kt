@@ -20,8 +20,7 @@ class MyApplication : Application() , HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
-         applicationComponent = DaggerApplicationComponent
-            .builder()
+         applicationComponent = DaggerApplicationComponent.builder()
              .applicationModule(ApplicationModule(this))
             .build()
          applicationComponent.inject(this)

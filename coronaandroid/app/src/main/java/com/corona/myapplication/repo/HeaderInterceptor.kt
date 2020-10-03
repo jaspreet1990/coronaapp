@@ -19,7 +19,7 @@ internal constructor() : Interceptor {
         try {
             val request = chain.request()
             val builder = request.newBuilder()
-
+            builder.header("x-rapidapi-key","9a3d81a045msha6f050a32efda0dp16484ejsnb779f8712ae1")
 
             return chain.proceed(builder.build())
         } catch (e: SocketTimeoutException) {
