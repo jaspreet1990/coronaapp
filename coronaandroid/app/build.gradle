@@ -50,7 +50,17 @@ android {
             applicationIdSuffix ".prod"
         }
     }
-
+    sourceSets {
+        main { assets.srcDirs = ['src/main/assets', 'src/main/assets/fonts'] }
+        localDebug {
+            res {
+                srcDirs 'src/localDebug/res', 'src/localDebug/res/'
+            }
+            java {
+                srcDirs 'src/localDebug/java', 'src/localDebug/java/'
+            }
+        }
+    }
 }
 
 dependencies {
