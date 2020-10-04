@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.corona.myapplication.R
 import com.corona.myapplication.ui.base.BaseFragment
 import com.corona.myapplication.ui.home.HomeViewModel
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.frg_detail.*
+import kotlinx.android.synthetic.main.frg_detail.view.*
 import javax.inject.Inject
 
-class DetailFrg: BaseFragment<HomeViewModel>() {
+open class DetailFrg: BaseFragment<HomeViewModel>() {
 
     @Inject
     lateinit var homeViewModel: HomeViewModel
@@ -21,7 +22,7 @@ class DetailFrg: BaseFragment<HomeViewModel>() {
     override fun getViewModel(): HomeViewModel = homeViewModel
 
     lateinit var detailAdapter: DetailAdapter
-
+    lateinit var rvProvince: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +31,7 @@ class DetailFrg: BaseFragment<HomeViewModel>() {
     ): View? {
 
     var view = inflater.inflate(R.layout.frg_detail, container,false)
+    rvProvince = view.findViewById<RecyclerView>(R.id.rv_province)
     return view
 }
 
@@ -37,25 +39,26 @@ class DetailFrg: BaseFragment<HomeViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setUp()
+        getCases()
         bindViewModel()
     }
 
     private fun bindViewModel() {
         homeViewModel.countryCoronaData.observe(this, Observer {
-            Log.e("==detail==","==${Gson().toJson(it)}")
             detailAdapter.addData(it.province, it.date)
-
         })
     }
 
-    private fun setUp(){
-        homeViewModel.getCasesBasedOnCountry(arguments?.get("countryname").toString())
+     fun setUp(){
         setProvinceRecyclerView()
+     }
+
+    fun getCases() {
+        homeViewModel.getCasesBasedOnCountry(arguments?.get("countryname").toString())
     }
 
     private fun setProvinceRecyclerView(){
         detailAdapter = DetailAdapter()
-        rv_province.adapter = detailAdapter
-
+        rvProvince.adapter = detailAdapter
     }
 }

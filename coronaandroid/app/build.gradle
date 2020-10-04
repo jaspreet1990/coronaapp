@@ -115,4 +115,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     implementation "androidx.cardview:cardview:1.0.0"
+
+    testImplementation 'android.arch.core:core-testing:1.0.0-alpha3'
+
 }

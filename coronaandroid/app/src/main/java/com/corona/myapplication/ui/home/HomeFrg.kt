@@ -41,7 +41,6 @@ class HomeFrg: BaseFragment<HomeViewModel>() {
 
     private fun bindViewModel() {
         homeViewModel.countryBasedCoronaResponseLiveData.observe(this, Observer {
-            Log.e("==res==","==${Gson().toJson(it)}")
          myData = it
          coronaCountryWiseAdapter.addData(myData)
          coronaCountryWiseAdapter.notifyDataSetChanged()

@@ -11,12 +11,12 @@ import javax.inject.Singleton
 
 
 @Singleton
-class CoronaInfoUseCase @Inject constructor(
+open class CoronaInfoUseCase @Inject constructor(
     private val apiService: ApiService,
     private val coronaDao: CoronaDao
-) {
+): CoronaInfoService {
 
-    fun getAllCountries(): Observable<MutableList<CoronaCoutryWiseTable>> {
+     override fun getAllCountries(): Observable<MutableList<CoronaCoutryWiseTable>> {
         val observableFromApi = getAllCountriesFromApi()
         val observableFromDb = getAllCountriesFromDB()
         return Observable.concatArrayDelayError(observableFromApi, observableFromDb).distinct()
@@ -43,7 +43,7 @@ class CoronaInfoUseCase @Inject constructor(
         return coronaDao.getAllCountries()
     }
 
-    fun getCasesBasedOnCountry(format: String, date: String, country: String): Observable<CoronaCoutryWiseTable> {
+    override fun getCasesBasedOnCountry(format: String, date: String, country: String): Observable<CoronaCoutryWiseTable> {
         val fromApi = getCasesBasedOnCountryFromApi(format, date, country)
         val fromDB = getCasesBasedOnCountryFromDB(country)
         return Observable.concatArrayDelayError(fromApi, fromDB).distinct()
