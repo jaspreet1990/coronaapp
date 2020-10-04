@@ -1,21 +1,16 @@
 package com.corona.myapplication.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.corona.myapplication.R
 import com.corona.myapplication.repo.db.CoronaCoutryWiseTable
 import com.corona.myapplication.ui.base.BaseFragment
 import com.corona.myapplication.ui.detail.DetailFrg
-import com.corona.myapplication.util.EndlessRecyclerViewScrollListener
 import com.corona.myapplication.util.RecyclerItemClickListener
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.country_wise_list.*
 import javax.inject.Inject
 
