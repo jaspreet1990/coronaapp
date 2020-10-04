@@ -22,11 +22,10 @@ class CoronaInfoUseCase @Inject constructor(
         return Observable.concatArrayDelayError(observableFromApi, observableFromDb).distinct()
     }
 
-    fun getAllCountriesFromApi(): Observable<MutableList<CoronaCoutryWiseTable>> {
+      fun getAllCountriesFromApi(): Observable<MutableList<CoronaCoutryWiseTable>> {
         return apiService.getCountries()
 
             .map {
-                Log.e(" API Size ", it.size.toString())
                 var list = mutableListOf<CoronaCoutryWiseTable>()
                 for (item in it) {
                     list.add(CoronaCoutryWiseTable(item.name, "", emptyList<Province>()))
@@ -51,7 +50,7 @@ class CoronaInfoUseCase @Inject constructor(
 
     }
 
-    fun getCasesBasedOnCountryFromApi(format: String, date: String, country: String):
+    private fun getCasesBasedOnCountryFromApi(format: String, date: String, country: String):
             Observable<CoronaCoutryWiseTable> {
 
          return apiService
